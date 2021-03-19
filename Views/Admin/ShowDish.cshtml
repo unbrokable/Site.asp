@@ -1,0 +1,65 @@
+﻿//@model IEnumerable<ExampleB.Models.Dish>
+@using ExampleB.Controllers
+<p>
+    @Html.ActionLink("Create New", "AddDish")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Сalories)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contains_Meat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contains_Milk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contains_Sugar)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Сalories)
+            </td>
+            <td>
+                @Html.Image(item.Img, new { @class = "or"})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contains_Meat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contains_Milk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contains_Sugar)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditDish", new { id = item.id }) |
+                @Html.ActionLink("Details", "DetailsDish", new { id = item.id }) |
+                @Html.ActionLink("Delete", "DeleteDish", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+<style>
+    .or {
+        height: 100px;
+        width: 100px;
+    }
+</style>

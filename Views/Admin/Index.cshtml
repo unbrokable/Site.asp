@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Users>
+@using ExampleB.Models;
+
+<table>
+    <tr>
+        <td></td>
+    </tr>
+    @foreach ( Users u in Model )
+    {
+<tr>
+    <td>@u.Name</td>
+    <td>@u.Email</td>
+    <td>@u.Password</td>
+    <td>@u.UserDiet.Count</td>
+</tr>
+    }
+</table>
