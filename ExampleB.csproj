@@ -134,6 +134,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DietsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +202,8 @@
     <Content Include="Views\Diets\Edit.cshtml" />
     <Content Include="Views\Diets\Index.cshtml" />
     <Content Include="Views\Partial_View\Dishes.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Partial_View\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

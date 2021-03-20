@@ -136,12 +136,13 @@ namespace ExampleB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ChoosenArr = Request.Cookies[namecookies]?.Value?.Split(',');
-                int[] arr = Array.ConvertAll(ChoosenArr, s => int.Parse(s));
+                var ChoosenArr = Request.Cookies[namecookies]?.Value?.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                int[] arr = (ChoosenArr != null)?Array.ConvertAll(ChoosenArr, s => int.Parse(s)): new int[0];
              
-                db.Entry(diet).State = EntityState.Modified; 
-                diet.DeleteDishes(arr);
-                await db.SaveChangesAsync();
+               db.Entry(diet).State = EntityState.Modified; 
+                diet.UpdateDiet(arr);
+              // await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(diet);

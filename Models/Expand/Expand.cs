@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.Entity;
 namespace ExampleB.Controllers
 {
     public  static class Expand
@@ -38,20 +38,20 @@ namespace ExampleB.Controllers
         {
            
                 var dish = bd.Dish.FirstOrDefault(d => d.id == newdish.id);
-                dish.Img = newdish.Img;
+                dish.Img = newdish.Img?? dish.Img;
                 dish.Name = newdish.Name;
                 dish.Сalories = newdish.Сalories;
                 dish.Contains_Meat = newdish.Contains_Meat;
                 dish.Contains_Milk = newdish.Contains_Milk;
                 dish.Contains_Sugar = newdish.Contains_Sugar;
-            bd.SaveChangesAsync();
+            bd.SaveChanges();
             
         }
-        public  static void AddDishes(this Diet diet, int[] arr)
+        public  static void AddDishes(this Diet diet, int[] arr, bool save = true)
         {
             if (arr == null || arr.Length == 0) throw new ArgumentException("Массив пустой");
 
-                 var db = new GoodFit();
+            using (var db = new GoodFit()) { 
             
                 for (int i = 0; i < arr.Length; i++)
                 {
@@ -61,19 +61,69 @@ namespace ExampleB.Controllers
                 //db.Dish.FirstOrDefault(j => j.id == Item_Id).Diet.Add(diet);
                 }
            
-                db.SaveChanges();
+                if(save ) db.SaveChanges();
             
-           
+           }
                
             
            
         }
-        public static void DeleteDishes(this Diet diet, int[] arr)
+        //static void Add( Diet diet , int[] arr  ) 
+        //{
+        //    using (var db = new GoodFit())
+        //    {
+        //      db.Dish.Where( i => arr.Contains(i.id)  )
+        //            .Select(delegate( Dish i)  { diet.Dish.Add(i); return true; });
+        //    }
+        //}
+        
+        public static void UpdateDiet(this Diet newdiet, int[] arr)
         {
-            var db = new GoodFit();
-            db.Diet.FirstOrDefault(j => j.Id == diet.Id).Dish.Clear();
-            db.Diet.FirstOrDefault(j => j.Id == diet.Id).AddDishes(arr);
-            db.SaveChanges();
+
+         
+
+            using (var db = new GoodFit())
+            {
+                Diet diet = db.Diet.FirstOrDefault(j => j.Id == newdiet.Id);
+                diet.Name = newdiet.Name;
+                diet.Subscription = newdiet.Subscription;
+                if (arr.Length == 0)
+                {
+                    db.Diet.FirstOrDefault(j => j.Id == newdiet.Id).Dish.Clear();
+                    db.SaveChanges();
+                    return;
+                }
+
+                foreach (var item in diet.Dish.ToList())
+                {
+                    if (arr.Contains(item.id))
+                    {
+
+                    }
+                    else
+                    {
+                      
+                        db.Diet.FirstOrDefault(j => j.Id == newdiet.Id).Dish.Remove(db.Dish.FirstOrDefault(i => i.id == item.id));
+                    }
+                    
+
+                }
+                db.SaveChanges();
+                
+                diet.AddDishes(arr);
+                
+                db.SaveChanges();
+
+            }
+            
+            
+           
+            //db.Entry(diet).State = EntityState.Modified;
+            //diet.Dish.Clear();
+           
+            
+          //  db.Diet.FirstOrDefault(j => j.Id == diet.Id)
+            
         }
     }
 }
