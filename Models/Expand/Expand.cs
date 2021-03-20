@@ -60,19 +60,20 @@ namespace ExampleB.Controllers
                 db.Diet.FirstOrDefault(j => j.Id == diet.Id).Dish.Add(disht);
                 //db.Dish.FirstOrDefault(j => j.id == Item_Id).Diet.Add(diet);
                 }
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (Exception e )
-            {
-              string res =   e.Message;
            
-                
-            }
+                db.SaveChanges();
+            
+           
                
             
            
+        }
+        public static void DeleteDishes(this Diet diet, int[] arr)
+        {
+            var db = new GoodFit();
+            db.Diet.FirstOrDefault(j => j.Id == diet.Id).Dish.Clear();
+            db.Diet.FirstOrDefault(j => j.Id == diet.Id).AddDishes(arr);
+            db.SaveChanges();
         }
     }
 }

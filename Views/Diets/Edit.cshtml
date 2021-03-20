@@ -41,15 +41,15 @@
         </div>
     </div>
 }
-
-    @section Scripts {
-
-
-        @Scripts.Render("~/Scripts/AddDish.js")
-    }
-
-
 @Html.Action("GetDishEdit", Model);
+@section Scripts {
+
+
+    @Scripts.Render("~/Scripts/AddDish.js")
+}
+
+
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -14,12 +14,12 @@ namespace ExampleB.Controllers
     public class DietsController : Controller
     {
         private GoodFit db = new GoodFit();
-
+        string namecookies = "Choose";
         // !!! Много ко многим
         public ActionResult GetDishes()
         {
             int[] arr;
-           var ChoosenArr = Request.Cookies["Choose"]?.Value?.Split(',');
+           var ChoosenArr = Request.Cookies[namecookies]?.Value?.Split(',');
             if (ChoosenArr == null )
             {
                 return PartialView("~/Views/Partial_View/Dishes.cshtml", db.Dish.ToList());
@@ -50,11 +50,11 @@ namespace ExampleB.Controllers
         public ActionResult Create([Bind(Include = "Id,Name,Subscription")] Diet diet)
         {
             
-            var ChoosenArr = Request.Cookies["Choose"]?.Value?.Split(',');
+            var ChoosenArr = Request.Cookies[namecookies]?.Value?.Split(',');
             int[] arr = Array.ConvertAll(ChoosenArr, s => int.Parse(s));
             if (ModelState.IsValid && arr != null)
             {
-               // diet.AddDishes(arr);
+              
                try { 
                db.Diet.Add(diet);
 
@@ -97,15 +97,7 @@ namespace ExampleB.Controllers
             return View(diet);
         }
 
-        
      
-
-        // POST: Diets/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-       
-
-        // GET: Diets/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +109,7 @@ namespace ExampleB.Controllers
             {
                 return HttpNotFound();
             }
+            SetCookies(namecookies, (int)id);
             
             return View("Edit",diet);
         }
@@ -126,28 +119,13 @@ namespace ExampleB.Controllers
             ViewBag.Basket = diet.Dish.ToList();
             var item_ = Array.ConvertAll(diet.Dish.ToArray<Dish>(), i => i.id);
             string result = "";
+            
             for (int i = 0; i < item_.Count(); i++)
             {
                 if (i == 0) result = item_[i].ToString();
-                else result += item_[i].ToString();
+                else result += "," + item_[i].ToString();
             }
-            var NotIn = (from i in db.Dish.ToList() where !Array.Exists(item_, j=> j== i.id  ) select i).ToList();
-            try
-            {
-
-                if (Request.Cookies["Choose"]?.Value != null) { Request.Cookies["Choose"].Value = result; }
-                else
-                {
-                HttpCookie cookie = new HttpCookie("Choose", result);
-                Request.Cookies.Add(cookie);
-                }
-            }
-            catch 
-            {
-                
-                
-            }  
-           
+            var NotIn = (from i in db.Dish.ToList() where !Array.Exists(item_, j=> j== i.id  ) select i).ToList(); 
             return PartialView("~/Views/Partial_View/Dishes.cshtml", NotIn); ;
         }
 
@@ -158,7 +136,11 @@ namespace ExampleB.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(diet).State = EntityState.Modified;
+                var ChoosenArr = Request.Cookies[namecookies]?.Value?.Split(',');
+                int[] arr = Array.ConvertAll(ChoosenArr, s => int.Parse(s));
+             
+                db.Entry(diet).State = EntityState.Modified; 
+                diet.DeleteDishes(arr);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -198,6 +180,39 @@ namespace ExampleB.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+
+        void SetCookies(string cookie, int id)
+        {
+            Diet diet = db.Diet.FirstOrDefault(i => i.Id == id);
+            var item_ = Array.ConvertAll(diet.Dish.ToArray<Dish>(), i => i.id);
+            string result = "";
+
+            for (int i = 0; i < item_.Count(); i++)
+            {
+                if (i == 0) result = item_[i].ToString();
+                else result += "," + item_[i].ToString();
+            }
+
+          SetCookies(cookie, result);
+
+        }
+       void SetCookies(string cookien , string value)
+        {
+
+            if (Request.Cookies[cookien]?.Value != null) 
+            {
+                HttpCookie cookie = new HttpCookie(cookien, value);
+                Response.Cookies.Set(cookie);
+            }
+            else
+            {
+                HttpCookie cookie = new HttpCookie(cookien, value);
+                  Response.Cookies.Set(cookie);
+            }
+
         }
     }
 }
