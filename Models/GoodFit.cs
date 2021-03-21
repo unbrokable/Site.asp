@@ -8,7 +8,7 @@ namespace ExampleB.Models
     public partial class GoodFit : DbContext
     {
         public GoodFit()
-            : base("name=GoodFit")
+            : base("name=GoodFit1")
         {
         }
 
@@ -16,8 +16,10 @@ namespace ExampleB.Models
         public virtual DbSet<Dish> Dish { get; set; }
         public virtual DbSet<History_user_condition> History_user_condition { get; set; }
         public virtual DbSet<History_user_diet> History_user_diet { get; set; }
+
         public virtual DbSet<UserDiet> UserDiet { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<DietView> DietView { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -21,6 +21,8 @@ namespace ExampleB.Models
         [Column(TypeName = "date")]
         public DateTime? Date_End { get; set; }
 
+        public bool Used { get; set; }
+
         public virtual Diet Diet { get; set; }
 
         public virtual Users Users { get; set; }

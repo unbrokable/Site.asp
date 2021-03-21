@@ -23,7 +23,10 @@ namespace ExampleB.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        public bool? Subscription { get; set; }
+        public bool Subscription { get; set; }
+
+        [StringLength(200)]
+        public string Description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History_user_diet> History_user_diet { get; set; }
@@ -33,6 +36,5 @@ namespace ExampleB.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dish> Dish { get; set; }
-
     }
 }

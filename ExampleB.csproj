@@ -139,6 +139,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Diet.cs" />
+    <Compile Include="Models\DietView.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\Enter_Models\Models.cs" />
     <Compile Include="Models\Expand\Expand.cs" />

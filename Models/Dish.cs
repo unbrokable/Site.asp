@@ -30,7 +30,7 @@ namespace ExampleB.Models
         public bool Contains_Meat { get; set; }
 
         public bool Contains_Milk { get; set; }
-       
+
         public bool Contains_Sugar { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
