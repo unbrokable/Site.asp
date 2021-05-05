@@ -1,10 +1,66 @@
-﻿@model ExampleB.Models.Diet
-
+﻿@model ExampleB.Models.DietView
+@using ExampleB.Controllers
 @{
     ViewBag.Title = "Index";
+    string DisplayContains(bool item)
+    {
+        if (item)
+        {
+            return $"Yes";
+        }
+        return $"No";
+    }
+
+}
+<h3 style="text-align:center">HI @ViewBag.Name</h3>
+<div class="separator">
+    Current diet
+</div>
+@{
+
+    if (ViewBag.CurDiet == null)
+    {
+        <p>Sorry but you dont choose diet</p>
+    }
+
+    else
+    {
+<div class=" curdiet_item">
+    @Html.Image(Model.Img, new { @class = "img" })
+
+    <br>
+    @Html.DisplayFor(Model => Model.Name)
+    <br>
+    @Html.DisplayFor(Model => Model.Description)
+
+    <br>a
+
+    <p>Contains glucose @DisplayContains(Convert.ToBoolean(Model.Meat))</p>
+
+    <p>Contains lactose @DisplayContains(Convert.ToBoolean(Model.Milk))</p>
+
+    <p>Contains sugar @DisplayContains(Convert.ToBoolean(Model.Sugar))</p>
+
+
+
+    <p>Average num. of calories  @Model.Avg </p>
+    <p>Number of dishes @Model.Amout</p><br>
+    @Html.ActionLink("Adjust", "ChangeDiet", new { id = Model.Id }, new { @class = "button" })
+</div>
+    }
+
+
 }
 
-<h2>Index</h2>
+<div class="separator">
+    Dishes for today
+</div>
+<div class="separator">
+    Other diets
+</div>
+
+@Html.Action("GetPartialDiets");
+
 
 
 

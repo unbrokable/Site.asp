@@ -21,11 +21,6 @@ namespace ExampleB.Models
         
         public string Email { get; set; }
 
-        public int? Weight { get; set; }
-
-        public int? Height { get; set; }
-
-        public double? Amount_Sugar { get; set; }
 
         public bool? Subscription { get; set; }
 
@@ -35,6 +30,7 @@ namespace ExampleB.Models
 
         [Required(ErrorMessage = "Confirm Password required")]
         [Compare("Password")]
+        [Display( Name = "Confirm")]
         public string ConfirmPassword { get; set; }
     }
 }

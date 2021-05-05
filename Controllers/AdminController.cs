@@ -12,26 +12,23 @@ namespace ExampleB.Controllers
     public class AdminController : Controller
     {
         GoodFit db = new GoodFit();
-        
+
         public ActionResult Index()
-        {
-            var db = new GoodFit();
-            var users = db.Users;
-            return View(users);
-        }
-        public ActionResult ShowUrers()
         {
 
             return View();
-
+        }
+        public ActionResult ShowUrers()
+        {
+            return View();
         }
         public ActionResult AddDish()
         {
             return View("AddDish");
         }
-       
+
         [HttpPost]
-        public ActionResult AddDish(Dish dish,  HttpPostedFileBase image1)
+        public ActionResult AddDish(Dish dish, HttpPostedFileBase image1)
         {
             // if (ModelState.IsValid) { 
             dish.Img = image1.ToByte();
@@ -45,16 +42,16 @@ namespace ExampleB.Controllers
                 db = new GoodFit();
             }
             //} 
-           return RedirectToAction("ShowDish");
+            return RedirectToAction("ShowDish");
         }
         public ActionResult ShowDish()
         {
             GoodFit db = new GoodFit();
-           var dish = db.Dish;
+            var dish = db.Dish;
             return View(dish);
         }
         [HttpGet]
-        public ActionResult  EditDish(int Id)
+        public ActionResult EditDish(int Id)
         {
             var dish = db.Dish.FirstOrDefault((i) => i.id == Id);
 
@@ -66,8 +63,24 @@ namespace ExampleB.Controllers
             if (image1 != null) dish.Img = image1.ToByte();
 
             db.UpdateDishAsync(dish);
-            
-            return  RedirectToAction("ShowDish");
+
+            return RedirectToAction("ShowDish");
+        }
+        [HttpGet]
+        public ActionResult DeleteDish(int Id)
+        {
+            var dish = db.Dish.FirstOrDefault((i) => i.id == Id);
+
+            return View("DeleteDish", dish);
+        }
+        [HttpPost, ActionName("DeleteDish")]
+        public async Task<ActionResult> ConfirmDelete(int id)
+        {
+            Dish dish =  await db.Dish.FindAsync(id);
+            db.Dish.Remove(dish);
+            await db.SaveChangesAsync();
+            return RedirectToAction("ShowDish");
+
         }
     }
 }

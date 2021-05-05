@@ -1,87 +1,67 @@
 ﻿@model IEnumerable<ExampleB.Models.Dish>
 @using ExampleB.Controllers
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{ 
+    string DisplayContains(bool item)
+    {
+        if (item)
+        {
+            return $"Yes";
+        }
+        return $"No";
+    }
+}
+<div class="separator">
+    Dishes
+</div>
 <section id="Chosen_dish">
     @{if (ViewBag.Basket != null) {
             foreach (var item in (IEnumerable<ExampleB.Models.Dish>)ViewBag.Basket)
             {
-    <div class="BlockD" id="dish_@item.id">
-        <div><p> @item.Name</p></div>
+        <div class="BlockD" id="dish_@item.id">
+            <div>@Html.Image(item.Img, new { @class = "or" }) </div>
+            <div><p style="text-align:center;"> @item.Name</p></div>
+            <div><p>Calories @item.Сalories</p></div>
 
-        <div><p>Калории @item.Сalories</p></div>
-        <div>@Html.Image(item.Img, new { @class = "or" }) </div>
+            <p>Contains glucose @DisplayContains(Convert.ToBoolean(item.Contains_Meat))</p>
 
+            <p>Contains lactose @DisplayContains(Convert.ToBoolean(item.Contains_Milk))</p>
 
-        @{ if (item.Contains_Meat)
-            {
-                <div>  <p> Содержить Мясо </p>  </div>
+            <p>Contains sugar @DisplayContains(Convert.ToBoolean(item.Contains_Sugar))</p>
+
+            <input type="button" name="button1" id="Button_@item.id" value="Delete" style="background: red;" />
+        </div>
+
+                }
             }
-            else
-            {
-                <div>  <p>Не Содержить Мясо </p>  </div>
-            }
-            if (item.Contains_Milk)
-            {
-                <div>  <p>Cодержить молоко </p>  </div>
-            }
-            else
-            {
-                <div>  <p>Не содержить молоко </p>  </div>
-            }
-            if (item.Contains_Sugar)
-            { <div>  <p>Cодержить сахар </p>  </div>}
-            else
-            {
-                <div>  <p> Не cодержить сахар</p>  </div>
-            }
+
         }
-        
-        <input type="button" name="button1" id="Button_@item.id" value="Удалить" style="background: red;" />
-    </div>
-                    }
-                } }
 
 </section>
-<hr/>
+<div class="separator">
+   Add Dish
+</div>
 <section id="dish">
     <div class="content">
 
         @foreach (var item in Model)
         {
-            <div class="BlockD" id="dish_@item.id">
-                <div><p> @item.Name</p></div>
+            
 
-                <div><p>Калории @item.Сalories</p></div>
+                
+        <div class="BlockD" id="dish_@item.id">
+            <div>@Html.Image(item.Img, new { @class = "or" }) </div>
+            <div><p style="text-align:center;"> @item.Name</p></div>
+            <div><p>Calories @item.Сalories</p></div>
 
-                <div>@Html.Image(item.Img, new { @class = "or" }) </div>
+            <p>Contains glucose @DisplayContains(Convert.ToBoolean(item.Contains_Meat))</p>
 
-                @{ if (item.Contains_Meat)
-                    {
-                        <div>  <p> Содержить Мясо </p>  </div>
-                    }
-                    else
-                    {
-                        <div>  <p>Не Содержить Мясо </p>  </div>
-                    }
-                    if (item.Contains_Milk)
-                    {
-                        <div>  <p>Cодержить молоко </p>  </div>
-                    }
-                    else
-                    {
-                        <div>  <p>Не содержить молоко </p>  </div>
-                    }
-                    if (item.Contains_Sugar)
-                    { <div>  <p>Cодержить сахар </p>  </div>}
-                    else
-                    {
-                        <div>  <p> Не cодержить сахар</p>  </div>
-                    }
-                }
-                <input type="button" name="button1" id="Button_@item.id" value="Добавить" />
-            </div>
+            <p>Contains lactose @DisplayContains(Convert.ToBoolean(item.Contains_Milk))</p>
+
+            <p>Contains sugar @DisplayContains(Convert.ToBoolean(item.Contains_Sugar))</p>
+
+
+            <input type="button" name="button1" id="Button_@item.id" value="Add"  style="background:#2BAA65;" />
+        </div>
         }
 
     </div>
@@ -94,19 +74,27 @@
             justify-content: space-around;
             flex-wrap: wrap;
         }
-        input[type*='butt']{
-            width:100%;
-            height:50px;
+        input[type*='butt'] {
+            border:none;
+            width: 100%;
+            height: 50px;
+            border-radius: 30px;
+            color:white;
         }
-        .BlockD{
-            height:300px;
-            width:300px;
+        .BlockD {
+            margin:20px;
+            padding:10px;
+            border-radius: 20px;
+            height: 370px;
+            width: 300px;
+            background: #F7F7F7;
         }
         .BlockD input{
            display:block;
         }
         .or {
-            height: 100px;
-            width: 100px;
+        
+            height: 150px;
+            width: 100%;
         }
     </style>

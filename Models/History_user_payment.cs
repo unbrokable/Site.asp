@@ -6,7 +6,7 @@ namespace ExampleB.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class History_user_condition
+    public partial class History_user_payment
     {
         [Key]
         [Column(Order = 0)]
@@ -15,13 +15,7 @@ namespace ExampleB.Models
 
         [Key]
         [Column(Order = 1, TypeName = "date")]
-        public DateTime Date_write { get; set; }
-
-        public int? Weight { get; set; }
-
-        public int? Height { get; set; }
-
-        public double? Amount_Sugar { get; set; }
+        public DateTime Date_payment { get; set; }
 
         public virtual Users Users { get; set; }
     }

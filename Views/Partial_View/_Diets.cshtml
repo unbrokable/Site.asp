@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ExampleB.Models.DietView>
+@using ExampleB.Controllers
+@{
+    string DisplayContains(bool item)
+    {
+        if (item)
+        {
+            return $"Yes";
+        }
+        return $"No";
+    }
+}
+<section class="products">
+    <div class="box">
+        <div class="swiper-container" style="width:1200px">
+            <div class="swiper-wrapper" >
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide " >
+                        <div class=" diet_item">
+                            @Html.Image(item.Img, new { @class = "img" })
+
+                            <br>
+                            @Html.DisplayFor(Model => item.Name)
+                            <br>
+                            @Html.DisplayFor(Model => item.Description)
+
+                            <br>a
+
+                            <p>Contains glucose @DisplayContains(Convert.ToBoolean(item.Meat))</p>
+
+                            <p>Contains lactose @DisplayContains(Convert.ToBoolean(item.Milk))</p>
+
+                            <p>Contains sugar @DisplayContains(Convert.ToBoolean(item.Sugar))</p>
+
+
+
+                            <p>Average num. of calories  @item.Avg </p>
+                            <p>Number of dishes @item.Amout</p><br>
+                            @Html.ActionLink("Adjust", "ChangeDiet",  new { id = item.Id  }, new { @class = "button" })
+                        </div>
+
+
+                       
+
+                    </div>
+                }
+               
+             </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+
+    .Diets {
+        width: 100%;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .diet_item {
+        padding: 40px;
+        background: #FFB800;
+        border-radius: 20px;
+        text-align: center;
+        width: 400px;
+        height: 600px;
+    }
+
+    img {
+        width: 100%;
+        height: 150px;
+    }
+
+    .add {
+        text-decoration: none;
+        color: white;
+        padding: 15px;
+        background: #478E41;
+        border-radius: 30px;
+        font-size: 15px;
+    }
+</style>

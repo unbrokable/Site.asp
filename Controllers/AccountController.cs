@@ -168,7 +168,7 @@ namespace ExampleB.Controllers
                 {
                     using (GoodFit db = new GoodFit())
                     {
-                        db.Users.Add(new Users() { Name = model.Name, Email = model.Email, Password = model.Password, Subscription = model.Subscription, Amount_Sugar = model.Amount_Sugar, Height = model.Height, Weight = model.Weight });
+                        db.Users.Add(new Users() { Name = model.Name, Email = model.Email, Password = model.Password, Subscription = model.Subscription });
                         try { 
                         db.SaveChanges();
                         }
@@ -192,6 +192,13 @@ namespace ExampleB.Controllers
            return View(model);
         }
 
+        public ActionResult About()
+        {
+            string file_path = Server.MapPath("~/Files/About.pdf");
+            string file_type = "application/pdf";
+            string file_name = "About.pdf";
+            return File(file_path, file_type, file_name);
+        }
 
    
        

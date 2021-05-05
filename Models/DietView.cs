@@ -22,7 +22,7 @@ namespace ExampleB.Models
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Subscription { get; set; }
+        public bool Subscription { get; set; }
 
         [StringLength(200)]
         public string Description { get; set; }

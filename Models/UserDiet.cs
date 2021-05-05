@@ -9,19 +9,21 @@ namespace ExampleB.Models
     [Table("UserDiet")]
     public partial class UserDiet
     {
-        public int Id { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Diet_Id { get; set; }
 
-        public int? Diet_Id { get; set; }
-
-        public int? User_Id { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int User_Id { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date_Start { get; set; }
+        public DateTime? Date_Start { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? Date_End { get; set; }
-
-        public bool Used { get; set; }
 
         public virtual Diet Diet { get; set; }
 

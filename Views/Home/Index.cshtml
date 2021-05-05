@@ -1,4 +1,94 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@Styles.Render("~/Content/Start.css")
+@Styles.Render("~/Content/Main.css")
+<header class="header">
+    <div class="header__content">
+        <div class="container">
+            <div class="header__content-inner">
+                <h1 class="header__title">
+                    The best application in the word
+                </h1>
+                <h4 class="header__subtitle">
+                    we hope :-)
+                </h4>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="advantage">
+    <div class="container">
+        <div class="advantage__inner">
+            <div class="advantage_img">
+                <img src="~/Img/advantage.png" alt="Alternate Text" />
+            </div>
+            <div class="advantage_items">
+                <h2>Our advantages</h2>
+                <ul type="square">
+                    <li>
+                        We have many different diets
+                    </li>
+                    <li>Searching with specified criteria</li>
+                    <li>Great efficiency and success in food nutrition counting</li>
+                    <li>
+                        Live support with best professionals in dietology
+                    </li>
+                    <li>
+                        Depth-in analytics of your food consumption and lifestyle
+                    </li>
+                </ul>
+                <br>
+                @Html.ActionLink("Join", "Login", "Account", new { area = "" }, new { @class = "button" })
+            </div>
+         </div>
+        </div>
+</section>
+<section class="about" id="about">
+    <div class="container">
+        <div class="about__inner">
+            <h2 class="title about__title">About Us</h2>
+            <div class="about__text">
+                <p>
+                    In the modern world, it is very important to maintain daily activity and monitor your health. It is known that most people do not always care about what they eat and how much they eat. Our project is to fix this and help our people to eat correctly and most importantly, it is useful to eat. We achieve maximum efficiency and help any
+                    of our clients using a subtle analysis engine based on its physical characteristics.
+                </p>
+                <p>
+                    In the modern world, it is very important to maintain daily activity and monito
+                    r your health. It is known that most people do not always care about what they eat and how much they eat. Our project is to fix this and help our people to eat correctly and most importantly, it is useful to eat. We achieve maximum efficiency and help any of our clients using a subtle analysis engine based on its physical characteristics.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team" id="team">
+    <div class="container">
+        <h2 class="title team__title">Our Team</h2>
+        <div class="team__items">
+            <div class="team__items_first">
+                <div class="team__item">
+                    <img src="~/Img/team1.jpg" alt="ARTHUR">
+                    <h6 class="team__name">ARTHUR</h6>
+                    <p class="team__positon">CEO</p>
+                </div>
+                <div class="team__item">
+                    <img src="~/Img/team2.jpg" alt="Denis">
+                    <h6 class="team__name">DENIS</h6>
+                    <p class="team__positon">PROGRAMMER</p>
+                </div>
+            </div>
+            <div class="team__items_second">
+                <div class="team__item">
+                    <img src="~/Img/team3.jpg" alt="MICHAIL">
+                    <h6 class="team__name">MICHAIL</h6>
+                    <p class="team__positon">INVESTOR</p>
+                </div>
+                <div class="team__item">
+                    <img src="~/Img/team4.jpg" alt="VADIM">
+                    <h6 class="team__name">VADIM</h6>
+                    <p class="team__positon">CO-FOUNDER</p>
+                </div>
+            </div >
+        </div>
+    </div>
+</section>

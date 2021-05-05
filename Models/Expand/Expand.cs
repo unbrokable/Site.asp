@@ -12,6 +12,7 @@ namespace ExampleB.Controllers
 {
     public  static class Expand
     {
+        // from file to byte[]
         public static byte[] ToByte( this HttpPostedFileBase img )
         {
             if (img == null) return null;
@@ -26,15 +27,15 @@ namespace ExampleB.Controllers
             }
             return null;
         }
-
+        // from byte to img 
         public static MvcHtmlString Image(this HtmlHelper html, byte[] image, object dynamic = null)
         {
             var descr = (dynamic != null) ? dynamic.ToString().Replace('{', ' ').Replace('}', ' ') : "";
             var img = String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(image));
             return new MvcHtmlString("<img " + descr + " src='" + img + "'  />");
         }
-
-        public static  void UpdateDishAsync(this GoodFit bd, Dish newdish)
+        // Dish table
+        public static  async Task UpdateDishAsync(this GoodFit bd, Dish newdish)
         {
            
                 var dish = bd.Dish.FirstOrDefault(d => d.id == newdish.id);
@@ -44,9 +45,10 @@ namespace ExampleB.Controllers
                 dish.Contains_Meat = newdish.Contains_Meat;
                 dish.Contains_Milk = newdish.Contains_Milk;
                 dish.Contains_Sugar = newdish.Contains_Sugar;
-            bd.SaveChanges();
+            await bd.SaveChangesAsync();
             
         }
+        // на прямую с бд  add dish to diet
         public  static void AddDishes(this Diet diet, int[] arr, bool save = true)
         {
             if (arr == null || arr.Length == 0) throw new ArgumentException("Массив пустой");
@@ -68,15 +70,7 @@ namespace ExampleB.Controllers
             
            
         }
-        //static void Add( Diet diet , int[] arr  ) 
-        //{
-        //    using (var db = new GoodFit())
-        //    {
-        //      db.Dish.Where( i => arr.Contains(i.id)  )
-        //            .Select(delegate( Dish i)  { diet.Dish.Add(i); return true; });
-        //    }
-        //}
-        
+      // атрибуты Diet добавить при изминении  update diet
         public static void UpdateDiet(this Diet newdiet, int[] arr)
         {
 
@@ -87,6 +81,7 @@ namespace ExampleB.Controllers
                 Diet diet = db.Diet.FirstOrDefault(j => j.Id == newdiet.Id);
                 diet.Name = newdiet.Name;
                 diet.Subscription = newdiet.Subscription;
+                diet.Description = newdiet.Description;
                 if (arr.Length == 0)
                 {
                     db.Diet.FirstOrDefault(j => j.Id == newdiet.Id).Dish.Clear();

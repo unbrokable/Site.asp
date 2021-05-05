@@ -47,7 +47,7 @@ namespace ExampleB.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Subscription")] Diet diet)
+        public ActionResult Create( Diet diet)
         {
             
             var ChoosenArr = Request.Cookies[namecookies]?.Value?.Split(',');
@@ -81,22 +81,6 @@ namespace ExampleB.Controllers
         {
             return View(await db.Diet.ToListAsync());
         }
-
-        // GET: Diets/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Diet diet = await db.Diet.FindAsync(id);
-            if (diet == null)
-            {
-                return HttpNotFound();
-            }
-            return View(diet);
-        }
-
      
         public async Task<ActionResult> Edit(int? id)
         {
@@ -132,7 +116,7 @@ namespace ExampleB.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Subscription")] Diet diet)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Subscription,Description")] Diet diet)
         {
             if (ModelState.IsValid)
             {
@@ -142,7 +126,7 @@ namespace ExampleB.Controllers
              
                db.Entry(diet).State = EntityState.Modified; 
                 diet.UpdateDiet(arr);
-              // await db.SaveChangesAsync();
+              //await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(diet);

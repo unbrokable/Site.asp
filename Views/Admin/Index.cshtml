@@ -1,17 +1,32 @@
-﻿@model IEnumerable<Users>
-@using ExampleB.Models;
+﻿
+@{
+    ViewBag.Title = "Index";
+}
 
-<table>
-    <tr>
-        <td></td>
-    </tr>
-    @foreach ( Users u in Model )
-    {
-<tr>
-    <td>@u.Name</td>
-    <td>@u.Email</td>
-    <td>@u.Password</td>
-    <td>@u.UserDiet.Count</td>
-</tr>
+<div class="container body-content mycontainer" style="height:500px;">
+    <h3>Hi  Admin</h3>
+            @Html.ActionLink("Dishes", "ShowDish", new { area = "" }, new { @class = "button" })
+            @Html.ActionLink("Diets", "Index", "Diets", new { area = "" }, new { @class = "button" })
+      
+            @Html.ActionLink("Users", "Register", "Account", new { area = "" }, new { @class = "button" })
+    
+</div>
+
+<style>
+    .mycontainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction:column;
     }
-</table>
+        
+        .button {
+            text-align:center;
+        display: block;
+        width: 500px;
+        background: #0085FF;
+        border-radius: 30px;
+        margin-bottom:30px;
+    }
+
+</style>

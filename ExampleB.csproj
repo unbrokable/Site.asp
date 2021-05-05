@@ -144,8 +144,9 @@
     <Compile Include="Models\Enter_Models\Models.cs" />
     <Compile Include="Models\Expand\Expand.cs" />
     <Compile Include="Models\GoodFit.cs" />
-    <Compile Include="Models\History_user_condition.cs" />
     <Compile Include="Models\History_user_diet.cs" />
+    <Compile Include="Models\History_user_payment.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\UserDiet.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,16 +156,30 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Main.css" />
     <Content Include="Content\Start.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\angle-up.svg" />
     <Content Include="Img\Example_Diet.jpg" />
+    <Content Include="Img\facebook_login.png" />
+    <Content Include="Img\google_login 1.png" />
+    <Content Include="Img\loginimg.png" />
+    <Content Include="Img\LifeCalc_login.png" />
+    <Content Include="Img\team4.jpg" />
+    <Content Include="Img\team3.jpg" />
+    <Content Include="Img\team2.jpg" />
+    <Content Include="Img\team1.jpg" />
+    <Content Include="Img\main.jpg" />
     <Content Include="Img\Start.jpg" />
+    <Content Include="Img\advantage.png" />
     <Content Include="Scripts\AddDish.js" />
+    <Content Include="Scripts\AddFile.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Files\About.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\GoogleEnter.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -178,6 +193,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Passworld.js" />
+    <Content Include="Scripts\Slider.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -193,18 +209,19 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Partial_View\Google.cshtml" />
     <Content Include="Views\Partial_View\Facebook.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddDish.cshtml" />
     <Content Include="Views\Admin\ShowDish.cshtml" />
     <Content Include="Views\Admin\EditDish.cshtml" />
     <Content Include="Views\Diets\Create.cshtml" />
     <Content Include="Views\Diets\Delete.cshtml" />
-    <Content Include="Views\Diets\Details.cshtml" />
     <Content Include="Views\Diets\Edit.cshtml" />
     <Content Include="Views\Diets\Index.cshtml" />
     <Content Include="Views\Partial_View\Dishes.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Partial_View\View.cshtml" />
+    <Content Include="Views\Partial_View\_Diets.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\DeleteDish.cshtml" />
+    <Content Include="Views\Shared\_LayoutEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

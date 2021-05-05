@@ -11,7 +11,8 @@ namespace ExampleB.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            History_user_condition = new HashSet<History_user_condition>();
+            History_user_diet = new HashSet<History_user_diet>();
+            History_user_payment = new HashSet<History_user_payment>();
             UserDiet = new HashSet<UserDiet>();
         }
 
@@ -25,12 +26,6 @@ namespace ExampleB.Models
         [StringLength(50)]
         public string Email { get; set; }
 
-        public int? Weight { get; set; }
-
-        public int? Height { get; set; }
-
-        public double? Amount_Sugar { get; set; }
-
         public bool? Subscription { get; set; }
 
         [Required]
@@ -38,7 +33,10 @@ namespace ExampleB.Models
         public string Password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<History_user_condition> History_user_condition { get; set; }
+        public virtual ICollection<History_user_diet> History_user_diet { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History_user_payment> History_user_payment { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserDiet> UserDiet { get; set; }

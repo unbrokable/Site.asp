@@ -11,7 +11,7 @@ namespace ExampleB.Models
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Diet_Id { get; set; }
+        public int User_Id { get; set; }
 
         [Key]
         [Column(Order = 1, TypeName = "date")]
@@ -19,6 +19,6 @@ namespace ExampleB.Models
 
         public int? Calories_Amount { get; set; }
 
-        public virtual Diet Diet { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

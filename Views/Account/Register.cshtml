@@ -3,112 +3,117 @@
 @{
     ViewBag.Title = "Register";
 }
+<div class="container body-content">
+    <section class="login-start">
+        <h2>Sing-up</h2>
+        @Html.Partial("~/Views/Partial_View/Google.cshtml")
+        @Html.Partial("~/Views/Partial_View/Facebook.cshtml")
+        <img src="~/Img/LifeCalc_login.png"> <br><br>
+        <style>
+            .login-start img:hover {
+                cursor: pointer;
+            }
+        </style>
+    </section>
+   </div>
+<div class="separator">
+    Built-in registration
+</div>
 
-<h2>Register</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="container body-content" style="display:flex; justify-content:space-between;">
+    <div class="registration__form">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>RegisterModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-              
+            <div class="form-horizontal">
+                <h4>Registration</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+
+                        @if (TempData.ContainsKey("name"))
+                        {
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @Value = TempData["name"].ToString(), @class = "form-control", @readonly = "readonly" } });
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" });
+                        }
+                        @if (!TempData.ContainsKey("name"))
+                        {
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" });
+                        }
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @{
+                            if (TempData.ContainsKey("email"))
+                            {
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @Value = TempData["email"].ToString(), @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            }
+                        }
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Password,  new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.ConfirmPassword,  new { @class = "form-control" } )
+                       
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                        <div class="form-check">
+                            <input style="width:15px; height:15px;" id="XG" name="XG" type="checkbox" class="form-check-input" >
+                            <label  style ="font-weight:100;"class="form-check-label" for="exampleCheck1">Show password</label>
+                        </div>
+                    </div>
+                </div>
+                
                     
-                    @if (TempData.ContainsKey("name"))
-                    {
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @Value = TempData["name"].ToString(),@class = "form-control", @readonly = "readonly"  } });
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" });
-                    }
-                   @if(!TempData.ContainsKey("name"))
-                    {
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" });
-                   }
-                 
 
+                
+                <div class="form-group">
+                    <div style="display:flex; margin:10px; align-items:center;">
+                        <div>
+                            <input style="background:black; color:white;" type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                        <div>
+                            <input style="width:15px; height:15px;" type="checkbox" id="confirm" name="confirm" value="yes">
+                            <label for="confirm">I have read and understand everything</label>
+                            @Html.ActionLink("Details", "About", "Account")
+                        </div>
+                    </div>
+                    </div>
             </div>
+        }
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    if (TempData.ContainsKey("email"))
-                    {
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @Value = TempData["email"].ToString(), @class = "form-control", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    }
-                    else
-                    {
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    }
-                }
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Amount_Sugar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount_Sugar, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Amount_Sugar, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.CheckBox("XG", false, new { htmlAttributes = new { @class = "form-control" } });
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-            </div>
-
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        <div class="registration__img">
+        <img style="width:500px;" src="~/Img/loginimg.png" alt="Alternate Text" />
     </div>
-}
-@Html.Partial("~/Views/Partial_View/Google.cshtml");
-@Html.Partial("~/Views/Partial_View/Facebook.cshtml")
-<div>
-    <div>
-        @Html.ActionLink("Back to List", "Index", "Home")
     </div>
+
 
     @section Scripts {
 

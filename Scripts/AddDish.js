@@ -11,13 +11,13 @@ $(document).ready(function () {
             removeItemOnce(arrcookies, tempg);
             
             createCookie("Choose", arrcookies );
-            this.value = "Добавить";
-            this.style.background = "white";
+            this.value = "Add";
+            this.style.background = "#2BAA65";
             $("#dish_" + tempg).detach().appendTo(".content");
             return; 
         } 
         
-        this.value = "Удалить";
+        this.value = "Remove";
         this.style.background = "red";
         
        

@@ -27,11 +27,11 @@ namespace ExampleB.Models
         [Required]
         public byte[] Img { get; set; }
 
-        public bool Contains_Meat { get; set; }
+        public bool? Contains_Meat { get; set; }
 
-        public bool Contains_Milk { get; set; }
+        public bool? Contains_Milk { get; set; }
 
-        public bool Contains_Sugar { get; set; }
+        public bool? Contains_Sugar { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Diet> Diet { get; set; }
