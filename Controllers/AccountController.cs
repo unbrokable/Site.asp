@@ -169,7 +169,7 @@ namespace ExampleB.Controllers
                 {
                     using (GoodFit db = new GoodFit())
                     {
-                        db.Users.Add(new Users() { Name = model.Name, Email = model.Email, Password = model.Password, Subscription = model.Subscription });
+                        db.Users.Add(new Users() { Name = model.Name, Email = model.Email, Password = model.Password, Subscription = false });
                         try { 
                         db.SaveChanges();
                         }

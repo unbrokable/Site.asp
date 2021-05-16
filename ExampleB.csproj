@@ -193,6 +193,8 @@
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
     <None Include="Properties\PublishProfiles\ExampleB20210516194012 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LifeCalc - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\lifecalc - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />

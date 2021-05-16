@@ -26,7 +26,7 @@ namespace ExampleB.Models
         [StringLength(50)]
         public string Email { get; set; }
 
-        public bool? Subscription { get; set; }
+        public bool Subscription { get; set; }
 
         [Required]
         [StringLength(50)]
