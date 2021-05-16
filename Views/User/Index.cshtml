@@ -10,56 +10,82 @@
         }
         return $"No";
     }
-
 }
 <h3 style="text-align:center">HI @ViewBag.Name</h3>
 <div class="separator">
     Current diet
 </div>
 @{
-
     if (ViewBag.CurDiet == null)
     {
-        <p>Sorry but you dont choose diet</p>
+        <p style="text-align:center;">Sorry but you dont choose diet</p>
     }
-
     else
     {
-<div class=" curdiet_item">
-    @Html.Image(Model.Img, new { @class = "img" })
+        <div class="diet_item" style="margin:0 auto 0">
+            @Html.Image(Model.Img, new { @class = "img" })
 
-    <br>
-    @Html.DisplayFor(Model => Model.Name)
-    <br>
-    @Html.DisplayFor(Model => Model.Description)
+            <br>
+            @Html.DisplayFor(Model => Model.Name)
+            <br>
+            @Html.DisplayFor(Model => Model.Description)
 
-    <br>a
+            <br>
 
-    <p>Contains glucose @DisplayContains(Convert.ToBoolean(Model.Meat))</p>
+            <p>Contains glucose @DisplayContains(Convert.ToBoolean(Model.Meat))</p>
 
-    <p>Contains lactose @DisplayContains(Convert.ToBoolean(Model.Milk))</p>
+            <p>Contains lactose @DisplayContains(Convert.ToBoolean(Model.Milk))</p>
 
-    <p>Contains sugar @DisplayContains(Convert.ToBoolean(Model.Sugar))</p>
+            <p>Contains sugar @DisplayContains(Convert.ToBoolean(Model.Sugar))</p>
 
 
 
-    <p>Average num. of calories  @Model.Avg </p>
-    <p>Number of dishes @Model.Amout</p><br>
-    @Html.ActionLink("Adjust", "ChangeDiet", new { id = Model.Id }, new { @class = "button" })
-</div>
+            <p>Average num. of calories  @Model.Avg </p>
+            <p>Number of dishes @Model.Amout</p><br>
+            <a class="Change button" href="#OtherDiet">Change</a>
+        </div>
     }
-
-
 }
 
 <div class="separator">
     Dishes for today
 </div>
+@if (ViewBag.CurDiet != null)
+{
+    @Html.Action("GetTodayDish")
+}
 <div class="separator">
-    Other diets
+    Amount of calories today
 </div>
+@if (ViewBag.CurDiet != null)
+{
+    <div>
+        <div style="margin-left:auto; margin-right:auto; width:500px; ">
+            @using (Ajax.BeginForm("EatSomething", new AjaxOptions { UpdateTargetId = "results" }))
+            {
 
-@Html.Action("GetPartialDiets");
+                <input style="display:none" type="number" name="calor" value="@Html.Action("GetCalories")">
+                @Html.DropDownList("products", ViewBag.Products as SelectList, new { @class = "col-md-12", id = "products" })
+                <button type="submit" class="btn btn-danger"> Eat :-(</button>
+            }
+        </div>
+        <br>
+        <img style="margin: 0 auto 0; display:block" src="~/Img/bad.png" alt="Alternate Text" />
+        <div>
+            <h3 style="text-align:center">Today you eat<span id="results"> @Html.Action("GetCalories")</span> calories</h3>
+        </div>
+    </div>
+
+    <div>
+
+
+    </div>
+}
+    <div name="OtherDiet" id="OtherDiet" class="separator">
+        Other diets
+    </div>
+    @Html.Action("GetPartialDiets")
+<h3 style="text-align:center">Best for you</h3>
 
 
 

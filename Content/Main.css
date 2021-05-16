@@ -300,5 +300,19 @@ input[type=checkbox] {
         background-color: gray;
     }
 
-
-    
+.diet_item {
+    font-family: Georgia, serif; padding: 40px;
+    background: #FFB800;
+    border-radius: 20px;
+    text-align: center;
+    width: 400px;
+    height: 600px;
+    font-weight: 600;
+}
+.img {
+    width: 100%;
+    height: 150px;
+}
+select{
+    background-color:black;
+}

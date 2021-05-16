@@ -17,7 +17,7 @@
                 @foreach (var item in Model)
                 {
                     <div class="swiper-slide " >
-                        <div class=" diet_item">
+                        <div class=" diet_item" style="margin:0 auto 0">
                             @Html.Image(item.Img, new { @class = "img" })
 
                             <br>
@@ -25,7 +25,7 @@
                             <br>
                             @Html.DisplayFor(Model => item.Description)
 
-                            <br>a
+                            <br>
 
                             <p>Contains glucose @DisplayContains(Convert.ToBoolean(item.Meat))</p>
 
@@ -66,19 +66,7 @@
         flex-wrap: wrap;
     }
 
-    .diet_item {
-        padding: 40px;
-        background: #FFB800;
-        border-radius: 20px;
-        text-align: center;
-        width: 400px;
-        height: 600px;
-    }
 
-    img {
-        width: 100%;
-        height: 150px;
-    }
 
     .add {
         text-decoration: none;

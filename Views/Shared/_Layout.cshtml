@@ -6,6 +6,7 @@
     <title>Good Fit</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/Content/Main.css">
 </head>
@@ -31,14 +32,12 @@
                         }
                         else
                         {
-
-
                             <li>@Html.ActionLink(@HttpContext.Current.User.Identity.Name + " " + "Log out", "SingOut", "Account")</li>
                         }
-                        // if (Request.IsAuthenticated && User.Identity.IsAuthenticated)
-                        // {
+                        if ( @HttpContext.Current.User.Identity.Name.Contains("deonisij"))
+                        {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                        // }
+                        }
                     }
                     <li>@Html.ActionLink("My cabinet", "Index", "User")</li>
                 </ul>
@@ -103,16 +102,29 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/chosen.jquery.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
     <script src="~/Scripts/Slider.js"></script>
     <script>
-    $(" .go-top").on("click",function (event) {
-        event.preventDefault();
-        var id  = $(this).attr('href'),
-        top = $(id).offset().top;
-        $('body,html').animate({scrollTop: top}, 1500);
-    });
+        $(" .go-top").on("click", function (event) {
+            event.preventDefault();
+            var id = $(this).attr('href'),
+                top = $(id).offset().top;
+            $('body,html').animate({ scrollTop: top }, 1500);
+        });
+        $('a[href="#OtherDiet"]').on("click", function (e) {
+            e.preventDefault();
+            var targetOffset = $('div[name="OtherDiet"]').offset().top;
+            $('body,html').animate(
+                { scrollTop: targetOffset },
+                1000
+            );
+        });
+        $(function () {
+            $("#products").chosen();
+        });
     </script>
 </body>
     </html>

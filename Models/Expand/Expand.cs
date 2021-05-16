@@ -23,7 +23,6 @@ namespace ExampleB.Controllers
             }
             catch
             {
-
             }
             return null;
         }

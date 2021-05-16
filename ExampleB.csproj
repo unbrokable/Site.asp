@@ -54,6 +54,9 @@
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <HintPath>packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.33.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.33\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -135,6 +138,7 @@
     <Compile Include="Controllers\DietsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,20 +146,25 @@
     <Compile Include="Models\DietView.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\Enter_Models\Models.cs" />
+    <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Models\Expand\Expand.cs" />
     <Compile Include="Models\GoodFit.cs" />
     <Compile Include="Models\History_user_diet.cs" />
     <Compile Include="Models\History_user_payment.cs" />
+    <Compile Include="Models\Instance\DishTime.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\UserDiet.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-chosen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\Start.css" />
     <Content Include="favicon.ico" />
@@ -163,6 +172,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\angle-up.svg" />
+    <Content Include="Img\bad.png" />
     <Content Include="Img\Example_Diet.jpg" />
     <Content Include="Img\facebook_login.png" />
     <Content Include="Img\google_login 1.png" />
@@ -180,13 +190,20 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Files\About.pdf" />
+    <Content Include="Content\bootstrap-chosen.scss" />
+    <Content Include="Content\bootstrap-chosen.less" />
+    <None Include="Properties\PublishProfiles\ExampleB20210516194012 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\GoogleEnter.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -222,6 +239,12 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\DeleteDish.cshtml" />
     <Content Include="Views\Shared\_LayoutEdit.cshtml" />
+    <Content Include="Views\Partial_View\GetTodayDish.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Partial_View\EatSomething.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

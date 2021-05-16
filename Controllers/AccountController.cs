@@ -44,9 +44,10 @@ namespace ExampleB.Controllers
 
             if (InDataBase(email)) {
                 FormsAuthentication.SetAuthCookie(email, false);
-                return Json(new { redirectToUrl = Url.Action("Login") });
+                return Json(new { redirectToUrl = Url.Action("Index", "User") });
+                //return RedirectToAction("Index","User");
             } 
-            return Json(new { redirectToUrl = Url.Action("Register") });
+            return Json(new { redirectToUrl = Url.Action("Register","Account") });
         }
         //Facebook
         private Uri RediredtUri
@@ -138,7 +139,7 @@ namespace ExampleB.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Name, true);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "User");
                 }
                 else
                 {

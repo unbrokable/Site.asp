@@ -8,7 +8,7 @@ namespace ExampleB.Models
     public partial class GoodFit : DbContext
     {
         public GoodFit()
-            : base("name=GoodFit2")
+            : base("name=GoodFit")
         {
         }
 
