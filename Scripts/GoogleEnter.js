@@ -3,8 +3,8 @@
         var CLIENTID = '983461715427-8o511pma4je9qgqvutisfhb5lk4otq2h.apps.googleusercontent.com';
            // var REDIRECT = 'https://localhost:44363/Account/Register';
             //var LOGOUT = 'https://localhost:44363/Account/Register';
-        var LOGOUT = 'https://lifecalc.azurewebsites.net/Account/Register';
-        var REDIRECT = 'https://lifecalc.azurewebsites.net/Account/Register';
+        var LOGOUT = 'https://lifecalc1.azurewebsites.net/Account/Register';
+        var REDIRECT = 'https://lifecalc1.azurewebsites.net/Account/Register';
             var Located_Func = '/Account/GoogleLogin/';
             //var After = "Login.cshtml";
         // 

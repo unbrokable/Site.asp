@@ -20,12 +20,6 @@ namespace ExampleB.Controllers
         {
             List<Product> products = new List<Product>();
             await Task.Run(() => products = Parsing("https://www.moh.gov.sa/en/HealthAwareness/Campaigns/badana/Pages/009.aspx"));
-            //products.Add(new Product("Bread", 12));
-            //products.Add(new Product("Low calory", 32));
-           // products.Add(new Product("Now", 44));
-
-           
-
             var name = HttpContext.User.Identity.Name;
             Users user = db.Users.FirstOrDefault(i => i.Email.CompareTo(name) == 0);
             ViewBag.CurDiet = user.UserDiet.FirstOrDefault();
@@ -79,15 +73,13 @@ namespace ExampleB.Controllers
                 dishes.Add(new DishTime(item, date));
                 date = date.AddHours(4);
             }
-
-
             return PartialView("~/Views/Partial_View/GetTodayDish.cshtml", dishes);
         }
         public ActionResult GetCalories()
         {
             var name = HttpContext.User.Identity.Name;
             Users user = db.Users.FirstOrDefault(i => i.Email.CompareTo(name) == 0);
-            History_user_diet curdiet = db.History_user_diet.FirstOrDefault(i => i.User_Id == user.Id && i.Date_write.Month == DateTime.Now.Month && DateTime.Now.Day == i.Date_write.Day);
+            History_user_diet curdiet = user.History_user_diet.FirstOrDefault(i =>  i.Date_write.Day == DateTime.Now.Day );
             if (curdiet == null)
             {
                 curdiet = new History_user_diet() {
@@ -109,7 +101,7 @@ namespace ExampleB.Controllers
 
             var name = HttpContext.User.Identity.Name;
             Users user = db.Users.FirstOrDefault(i => i.Email.CompareTo(name) == 0);
-            History_user_diet curdiet = db.History_user_diet.FirstOrDefault(i => i.User_Id == user.Id && i.Date_write.Month == DateTime.Now.Month && DateTime.Now.Day == i.Date_write.Day);
+            History_user_diet curdiet = user.History_user_diet.Last(i => i.Date_write.Day == DateTime.Now.Day);
             curdiet.Calories_Amount += products;
              db.SaveChanges();
             ViewBag.Amount = curdiet.Calories_Amount;
